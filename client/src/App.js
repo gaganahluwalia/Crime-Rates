@@ -76,10 +76,12 @@ function App() {
       setIsFormInvalid(true);
       return false;
     }
+    // return false;
   };
 
-  const searchPostcode = async () => {
+  const searchPostcode = async (e) => {
     setFresh(true);
+    e.preventDefault();
     if (validateForm()) {
       setLoading(true);
       setFresh(false);
@@ -122,10 +124,19 @@ function App() {
                   Postcode and Date fields are mandatory
                 </Box>
               )}
-              <Box sx={{ display: "flex", flexDirection: "row" }}>
-                <Postcode postcode={postcode} setPostcode={setPostcode} />
 
-                <DateField date={date} setDate={setDate} />
+              <Box sx={{ display: "flex", flexDirection: "row" }}>
+                <Postcode
+                  isFormInvalid={isFormInvalid}
+                  postcode={postcode}
+                  setPostcode={setPostcode}
+                />
+
+                <DateField
+                  isFormInvalid={isFormInvalid}
+                  date={date}
+                  setDate={setDate}
+                />
                 <Categories
                   crimeCategory={crimeCategory}
                   setCrimeCategory={setCrimeCategory}

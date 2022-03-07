@@ -9,12 +9,12 @@ const Postcode = ({ isFormInvalid, postcode, setPostcode }) => {
   return (
     <FormControl sx={{ m: 1, width: "95ch" }} variant="outlined">
       <InputLabel htmlFor="outlined-adornment-postcode">
-        {isFormInvalid ? "Postcode required" : "Postcode"}
+        {isFormInvalid && !postcode ? "Postcode required" : "Postcode"}
       </InputLabel>
       <OutlinedInput
         id="outlined-adornment-postcode"
         type="text"
-        error={isFormInvalid}
+        error={isFormInvalid && !postcode}
         value={postcode}
         required
         onChange={(e) => setPostcode(e.target.value)}
@@ -25,8 +25,10 @@ const Postcode = ({ isFormInvalid, postcode, setPostcode }) => {
             {/* </IconButton> */}
           </InputAdornment>
         }
-        placeholder={isFormInvalid ? "Postcode required" : "Postcode"}
-        label={isFormInvalid ? "Postcode required" : "Postcode"}
+        placeholder={
+          isFormInvalid && !postcode ? "Postcode required" : "Postcode"
+        }
+        label={isFormInvalid && !postcode ? "Postcode required" : "Postcode"}
       />
     </FormControl>
   );
