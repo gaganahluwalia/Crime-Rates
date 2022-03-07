@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const API_URL = "http://localhost:5000";
-const API_URL = "https://uk-crimes-app-backend.herokuapp.com";
+const API_URL = "http://localhost:5000";
+//const API_URL = "https://uk-crimes-app-backend.herokuapp.com";
 const POLICE_API_BASE = "https://data.police.uk/api";
 export const fetchCrimes = async (postcode, date, category, policeForce) => {
   try {
