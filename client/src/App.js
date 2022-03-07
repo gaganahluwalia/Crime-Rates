@@ -48,6 +48,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [fresh, setFresh] = useState(true);
   const [isFormInvalid, setIsFormInvalid] = useState(false);
+
   const [crimeCategory, setCrimeCategory] = useState("");
   const [policeForce, setPoliceForce] = useState("");
 
@@ -61,7 +62,14 @@ function App() {
   };
 
   const validateForm = () => {
-    if (postcode !== "") {
+    if (
+      date !== "" &&
+      date !== null &&
+      date !== undefined &&
+      postcode !== "" &&
+      postcode !== null &&
+      postcode !== undefined
+    ) {
       setIsFormInvalid(false);
       return true;
     } else {
@@ -69,6 +77,7 @@ function App() {
       return false;
     }
   };
+
   const searchPostcode = async () => {
     setFresh(true);
     if (validateForm()) {
@@ -98,6 +107,7 @@ function App() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <Header />
+
       <Container maxWidth="xlg" sx={{ mt: 2, mb: 2, marginTop: 10 }}>
         <Grid container spacing={1}>
           <Grid item xs={12} md={12} lg={12}>
@@ -107,12 +117,13 @@ function App() {
                 height: 110,
               }}
             >
+              {isFormInvalid && (
+                <Box sx={{ color: "#d32f2f", marginLeft: 1 }}>
+                  Postcode and Date fields are mandatory
+                </Box>
+              )}
               <Box sx={{ display: "flex", flexDirection: "row" }}>
-                <Postcode
-                  isFormInvalid={isFormInvalid}
-                  postcode={postcode}
-                  setPostcode={setPostcode}
-                />
+                <Postcode postcode={postcode} setPostcode={setPostcode} />
 
                 <DateField date={date} setDate={setDate} />
                 <Categories
